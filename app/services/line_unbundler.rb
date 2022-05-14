@@ -8,6 +8,7 @@ class LineUnbundler
   def call
     text_blob
       .then(&method(:clean_new_lines))
+      .then(&method(:remove_double_spaces))
       .then(&method(:parse_fds_lines))
   end
 
@@ -15,6 +16,10 @@ class LineUnbundler
 
   def clean_new_lines(lines)
     lines.delete("\n")
+  end
+
+  def remove_double_spaces(lines)
+    lines.gsub(/\s+/, " ")
   end
 
   def parse_fds_lines(lines)
