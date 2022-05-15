@@ -4,7 +4,7 @@ class CreateSurfaces < ActiveRecord::Migration[7.0]
       t.string :char_id
       t.decimal :volume_flow
 
-      t.index(:name, unique: true)
+      t.index(:char_id, unique: true)
     end
   end
 end

@@ -10,11 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_14_114528) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_15_010232) do
   create_table "surfaces", force: :cascade do |t|
     t.string "char_id"
     t.decimal "volume_flow"
-    t.index "\"name\"", name: "index_surfaces_on_name", unique: true
+    t.index ["char_id"], name: "index_surfaces_on_char_id", unique: true
+  end
+
+  create_table "vents", force: :cascade do |t|
+    t.string "surface_id"
+    t.index ["surface_id"], name: "index_vents_on_surface_id"
   end
 
 end
