@@ -14,4 +14,12 @@ RSpec.describe RegexLibrary do
       expect(matched_value).to eql("-01.02")
     end
   end
+
+  describe "WORD" do
+    it "picks up words" do
+      matched_value = "PARAM='testing-testing', someother stuff".match(described_class::WORD)[:value]
+
+      expect(matched_value).to eql("testing-testing")
+    end
+  end
 end
