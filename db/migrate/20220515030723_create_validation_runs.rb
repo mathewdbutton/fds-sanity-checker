@@ -5,8 +5,8 @@ class CreateValidationRuns < ActiveRecord::Migration[7.0]
       t.timestamps
     end
 
-    add_reference(:vents, :validation_runs)
-    add_reference(:surfaces, :validation_runs)
+    add_reference(:vents, :validation_run)
+    add_reference(:surfaces, :validation_run)
     add_index(:surfaces, [:char_id, :validation_run_id], unique: true)
   end
 end

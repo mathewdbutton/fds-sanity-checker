@@ -3,14 +3,15 @@ class VentAttributeMapper
     new(raw_attributes).call
   end
 
-  attr_reader :raw_attributes
+  attr_reader :raw_attributes, :validation_run
 
-  def initialize(raw_attributes)
-    @raw_attributes = raw_attributes
+  def initialize(tuple, validation_run)
+    @raw_attributes = tuple.arguments
+    @validation_run = validation_run
   end
 
   def call
-    Vent.create(surf_id: surf_id)
+    Vent.create(surf_id: surf_id, validation_run: validation_run)
   end
 
   private

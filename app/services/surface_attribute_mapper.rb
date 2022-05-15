@@ -3,14 +3,15 @@ class SurfaceAttributeMapper
     new(raw_attributes).call
   end
 
-  attr_reader :raw_attributes
+  attr_reader :raw_attributes, :validation_run
 
-  def initialize(raw_attributes)
-    @raw_attributes = raw_attributes
+  def initialize(tuple, validation_run)
+    @raw_attributes = tuple.arguments
+    @validation_run = validation_run
   end
 
   def call
-    Surface.create(volume_flow: volume_flow, char_id: id)
+    Surface.create(volume_flow: volume_flow, char_id: id, validation_run: validation_run)
   end
 
   private

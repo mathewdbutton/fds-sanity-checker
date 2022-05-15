@@ -3,9 +3,10 @@ require "rails_helper"
 RSpec.describe SurfaceAttributeMapper do
   describe "#call" do
     it "assigns the fields correctly" do
-      raw_attributes = "ID='SUCK', VOLUME_FLOW=0.01, COLOR='RED'"
+      validation_run = create(:validation_run)
+      tuple = NamelistExtractor::NamelistTuple.new(name: "Doesn't Matter", arguments: "ID='SUCK', VOLUME_FLOW=0.01, COLOR='RED'")
 
-      surface = described_class.new(raw_attributes).call
+      surface = described_class.new(tuple, validation_run).call
 
       aggregate_failures do
         expect(surface).to be_an(Surface)
