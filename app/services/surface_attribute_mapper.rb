@@ -1,6 +1,6 @@
 class SurfaceAttributeMapper
-  def self.call(raw_attributes)
-    new(raw_attributes).call
+  def self.call(...)
+    new(...).call
   end
 
   attr_reader :raw_attributes, :validation_run
