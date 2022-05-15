@@ -3,6 +3,8 @@ class ModelLoaderController < ApplicationController
   end
 
   def create
+    puts ModelValidator.call(params[:model])
+
     redirect_to action: :new
   end
 

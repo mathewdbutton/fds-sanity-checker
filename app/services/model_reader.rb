@@ -1,4 +1,4 @@
-class FileParser
+class ModelReader
   attr_reader :file
 
   def initialize(file)
@@ -6,6 +6,6 @@ class FileParser
   end
 
   def call
-    LineUnbundler.new(file.read).call
+    file.read
   end
 end

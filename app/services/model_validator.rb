@@ -1,7 +1,13 @@
 class ModelValidator
   def self.call(file)
-    ModelReader.new(file)
+    cleaned_lines = ModelReader.new(file).call
       .then { |text_blob| LineUnbundler.new(text_blob).call }
-      .then { |cleaned_lines| }
+
+
+    cleaned_lines.map do |cleaned_line|
+      NamelistExtractor.call(cleaned_line)
+      .then { |namelist_tuple| NamelistFactory.call(namelist_tuple) }
+      .then { |mapper, namelist_tuple| mapper.call(namelist_tuple.arguments) }
+    end
   end
 end
