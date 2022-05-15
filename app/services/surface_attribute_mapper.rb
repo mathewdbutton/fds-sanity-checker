@@ -10,16 +10,19 @@ class SurfaceAttributeMapper
   end
 
   def call
-    Surface.create(volume_flow: volume_flow, char_id: char_id)
+    Surface.create(volume_flow: volume_flow, char_id: id)
   end
 
   private
 
-  def volume_flow
-    raw_attributes.match(Regexp.new(/VOLUME_FLOW=/.source + RegexLibrary::REAL_NUMBER.source))[:value]
-  end
+  ARGUMENTS = {
+    VOLUME_FLOW: RegexLibrary::REAL_NUMBER,
+    ID: RegexLibrary::WORD
+  }
 
-  def char_id
-    raw_attributes.match(Regexp.new(/ID=/.source + RegexLibrary::WORD.source))[:value]
+  ARGUMENTS.each do |argument_name, regex|
+    define_method(argument_name.downcase.to_sym) do
+      raw_attributes.match(Regexp.new(/#{argument_name}=/.source + regex.source))[:value]
+    end
   end
 end
