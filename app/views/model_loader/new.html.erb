@@ -1,10 +1,10 @@
 <div>
-  <h1 class="font-bold text-4xl">ModelLoader#new</h1>
-  <p>Find me in app/views/model_loader/new.html.erb</p>
-
   <%= form_with url: model_loader_index_path do |form| %>
-    <%= form.file_field :model %>
-    <%= form.submit %>
+    <div class="relative">
+    <%= form.file_field :model, class:"p-20 bg-gray-100", required: true %>
+    <p>Drop an FDS model in the box 👆</p>
+    </div>
+    <%= form.submit "Run Validation", class:"mt-5 rounded-lg p-4 text-white bg-cyan-500" %>
   <% end %>
 
 </div>
