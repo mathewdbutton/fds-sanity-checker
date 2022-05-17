@@ -31,7 +31,7 @@ class SupplyExhaustStatusComponent < ViewComponent::Base
   end
 
   def volume_flow_contributors
-    validation_run.surfaces.where.not(volume_flow: nil)
+    validation_run.surfaces.where.not(volume_flow: nil).includes(:vents)
   end
 
   def net_volume_flow

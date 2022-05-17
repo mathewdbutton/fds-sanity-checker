@@ -8,8 +8,8 @@
     <details>
     <summary> Contributing Input Parameters </summary>
       <ul>
-        <% volume_flow_contributors.each do | surface | %>
-          <li>Surface - <%= surface.char_id %> - <%= surface.vents.count %> - <%= surface.volume_flow %><%=units%></li>
+        <% volume_flow_contributors.find_each do | surface | %>
+          <li>Surface - <%= surface.char_id %> - <%= surface.vents.size %> - <%= surface.volume_flow %><%=units%></li>
         <% end %>
       </ul>
     </details>
