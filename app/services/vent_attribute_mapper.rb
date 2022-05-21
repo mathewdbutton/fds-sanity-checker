@@ -1,6 +1,4 @@
 class VentAttributeMapper < BaseMapper
-  extend InputAttributeMapper
-
   map_attribute :SURF_ID, RegexLibrary::WORD
 
   def call

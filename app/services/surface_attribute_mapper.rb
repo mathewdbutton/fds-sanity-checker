@@ -1,6 +1,4 @@
 class SurfaceAttributeMapper < BaseMapper
-  extend InputAttributeMapper
-
   map_attribute :VOLUME_FLOW, RegexLibrary::REAL_NUMBER
   map_attribute :ID, RegexLibrary::WORD
 

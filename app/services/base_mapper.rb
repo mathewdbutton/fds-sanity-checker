@@ -1,4 +1,6 @@
 class BaseMapper
+  extend InputAttributeMapper
+
   def self.call(...)
     new(...).call
   end
