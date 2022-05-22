@@ -3,7 +3,11 @@
 <h2 class="font-lg bg-black text-white">Slice File Status </h2>
   <div>
     <% if errors %>
-      <p class="bg-white text-red-500"><%= errors.join(" ,") %></p>
+      <ul>
+      <% errors.each do |error| %>
+        <li class="bg-white text-red-500"><%= error %></li>
+      <% end %>
+      </ul>
     <% end %>
     Total Slice Files: <%= slice_file_count %> (x: <%= x_plane_count %>, y: <%= y_plane_count %> z: <%= z_plane_count %>)
     <details>
