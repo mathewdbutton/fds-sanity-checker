@@ -1,0 +1,26 @@
+
+<div class="p-4 <%= box_state %>">
+<h2 class="font-lg bg-black text-white">Slice File Status </h2>
+  <div>
+    Total Slice Files: <%= slice_file_count %> (x: <%= x_plane_count %>, y: <%= y_plane_count %> z: <%= z_plane_count %>)
+    <details>
+    <summary> Contributing Input Parameters </summary>
+      <ul>
+        <strong> Velocity Slices</strong>
+        <% velocity_slices.find_each do | slice | %>
+          <li><%= slice.used_plane %> - <%= slice.used_plane_value%> - <%= slice.vector%></li>
+        <% end %>
+        <hr>
+        <strong> Temperature Slices</strong>
+        <% temperature_slices.find_each do | slice | %>
+          <li><%= slice.used_plane %> - <%= slice.used_plane_value%></li>
+        <% end %>
+        <hr>
+        <strong> Visibility Slices</strong>
+        <% visibility_slices.find_each do | slice | %>
+          <li><%= slice.used_plane %> - <%= slice.used_plane_value%></li>
+        <% end %>
+      </ul>
+    </details>
+  </div>
+</div>
