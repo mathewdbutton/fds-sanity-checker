@@ -1,2 +1,9 @@
-<%= render(SupplyExhaustStatusComponent.new(validation_run: @validation_run)) %>
-<%= render(SliceFileStatusComponent.new(validation_run: @validation_run)) %>
+<div class="flex flex-col">
+  <div>
+    <%= link_to "Load another model", root_path, class: "text-cyan-500 underline" %>
+  </div>
+  <div class="flex">
+    <%= render(SupplyExhaustStatusComponent.new(validation_run: @validation_run)) %>
+    <%= render(SliceFileStatusComponent.new(validation_run: @validation_run)) %>
+  </div>
+</div>
