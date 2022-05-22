@@ -1,4 +1,4 @@
-class ModelValidator
+class ModelPipeline
   def self.call(file)
     CurrentValidation.validation_run = ValidationRun.generate
 

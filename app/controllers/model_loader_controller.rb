@@ -3,7 +3,7 @@ class ModelLoaderController < ApplicationController
   end
 
   def create
-    ModelValidator.call(params[:model])
+    ModelPipeline.call(params[:model])
 
     redirect_to validation_runs_show_path(run_id: CurrentValidation.validation_run.run_id)
   end

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe ModelValidator do
+RSpec.describe ModelPipeline do
   describe "#call" do
     let(:test_file) { fixture_file_upload("test.fds") }
 
