@@ -59,6 +59,7 @@ group :development, :test do
 
   gem "factory_bot_rails", "~> 6.2"
   gem "pry-rails", "~> 0.3.9"
+  gem "bullet"
 end
 
 group :development do
@@ -72,6 +73,8 @@ group :development do
   # gem "spring"
 
   gem "standardrb", "~> 1.0"
+
+
 end
 
 group :test do
