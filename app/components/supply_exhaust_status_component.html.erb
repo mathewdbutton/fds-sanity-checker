@@ -2,6 +2,9 @@
 <div class="p-4 <%= box_state %>">
 <h2 class="font-lg bg-black text-white">Suppy & Exhaust Status </h2>
   <div class="">
+    <% if errors %>
+      <p class="bg-white text-red-500"><%= errors.join(" ,") %></p>
+    <% end %>
     <p>Total Supply: <%= total_supply %><%=units%></p>
     <p>Total Exhaust: <%= total_demand %><%=units%></p>
     <p>Net Volume Flow: <%= net_volume_flow %><%=units%> </p>

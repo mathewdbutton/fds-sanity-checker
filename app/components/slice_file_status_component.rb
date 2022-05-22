@@ -1,18 +1,19 @@
 # frozen_string_literal: true
 
 class SliceFileStatusComponent < ViewComponent::Base
-  attr_reader :validation_run
+  attr_reader :validation_run, :validator
   def initialize(validation_run:)
     @validation_run = validation_run
+    @validator = SliceFileValidator.new(validation_run)
   end
 
   def valid?
-    slice_file_count > 0 &&
-    z_plane_count > 0 &&
-    temperature_slices.size > 0 &&
-    visibility_slices.size > 0 &&
-    velocity_slices.size > 0 &&
-    velocity_slices.where(vector: false).size == 0
+    validator.valid?
+  end
+
+  def errors
+    validator.valid?
+    validator.errors.full_messages
   end
 
   def box_state
