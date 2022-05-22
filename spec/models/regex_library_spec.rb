@@ -22,4 +22,24 @@ RSpec.describe RegexLibrary do
       expect(matched_value).to eql("testing-testing")
     end
   end
+
+  describe "LOGICAL" do
+    it "picks up true" do
+      matched_value = "VECTOR=.TRUE.', someother stuff".match(described_class::LOGICAL)[:value]
+
+      expect(matched_value).to eql("TRUE")
+    end
+    it "picks up false" do
+      matched_value = "VECTOR=.FALSE.', someother stuff".match(described_class::LOGICAL)[:value]
+
+      expect(matched_value).to eql("FALSE")
+    end
+  end
+
+  describe "cast_logical" do
+    it "converts 'TRUE' to boolean" do
+      boolean = described_class.cast_logical("TRUE")
+      expect(boolean).to be(true)
+    end
+  end
 end
