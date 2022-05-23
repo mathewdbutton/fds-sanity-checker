@@ -1,4 +1,4 @@
-class LineUnbundler
+class LineCleaner
   def initialize(text_blob)
     @text_blob = text_blob
   end

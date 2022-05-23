@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe LineUnbundler do
+RSpec.describe LineCleaner do
   # "&PRES VELOCITY_TOLERANCE=0.0001 /",
   #       "&SURF ID='SUCK', COLOR='RED' /"
 
