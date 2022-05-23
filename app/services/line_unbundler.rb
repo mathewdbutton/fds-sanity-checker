@@ -1,6 +1,4 @@
 class LineUnbundler
-  LINE_SEPARATOR_REGEX = Regexp.new(/&.*?\//m)
-
   def initialize(text_blob)
     @text_blob = text_blob
   end
@@ -9,21 +7,17 @@ class LineUnbundler
     text_blob
       .then(&method(:clean_new_lines))
       .then(&method(:remove_double_spaces))
-      .then(&method(:parse_fds_lines))
+      .then(&:strip)
   end
 
   private
 
-  def clean_new_lines(lines)
-    lines.delete("\n")
+  def clean_new_lines(line)
+    line.delete("\n")
   end
 
-  def remove_double_spaces(lines)
-    lines.gsub(/\s+/, " ")
-  end
-
-  def parse_fds_lines(lines)
-    lines.scan(LINE_SEPARATOR_REGEX)
+  def remove_double_spaces(line)
+    line.gsub(/\s+/, " ")
   end
 
   attr_reader :text_blob
