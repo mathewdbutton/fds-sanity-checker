@@ -17,6 +17,16 @@ RSpec.describe ModelPipeline do
       )
     end
 
+    context "larger file" do
+      let(:test_file) { fixture_file_upload("larger_test.fds") }
+
+      it "runs" do
+        expect do
+          records = described_class.call(test_file)
+        end.not_to raise_error
+      end
+    end
+
     it "produces records that are all valid" do
       records = described_class.call(test_file)
       expect(records).to all(be_valid)

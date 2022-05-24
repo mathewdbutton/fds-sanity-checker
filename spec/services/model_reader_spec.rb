@@ -18,8 +18,8 @@ RSpec.describe ModelReader do
       e = described_class.new(test_file).each
 
       aggregate_failures do
-        expect(e.next).to eql("&SLCF XPB=0.02 / \n")
-        expect(e.next).to eql(" &SURF ID='SUCK',\n THING='YEP', \nCOLOR='RED' /")
+        expect(e.next).to eql("&SLCF XPB=0.02 /")
+        expect(e.next).to eql("&SURF ID='SUCK',\n THING='YEP', \nCOLOR='RED' /")
       end
     end
   end

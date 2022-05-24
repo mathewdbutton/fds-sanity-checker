@@ -1,7 +1,7 @@
 class ModelReader
   include Enumerable
 
-  LINE_SEPARATOR_REGEX = Regexp.new(/&.*?\//m)
+  LINE_SEPARATOR_REGEX = Regexp.new(/(?<namelist_value>&.*?\/)/m)
 
   attr_reader :file
 
@@ -17,9 +17,10 @@ class ModelReader
     e = Enumerator.new do |yielder|
       accu = ""
       file.each do |line|
+        next if line == ""
         accu = accu + line
         if accu.match?(LINE_SEPARATOR_REGEX)
-          yielder << accu
+          yielder << accu.match(LINE_SEPARATOR_REGEX)[:namelist_value]
           accu = ""
         end
       end

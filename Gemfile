@@ -60,6 +60,7 @@ group :development, :test do
   gem "factory_bot_rails", "~> 6.2"
   gem "pry-rails", "~> 0.3.9"
   gem "bullet"
+  gem 'pry-byebug'
 end
 
 group :development do

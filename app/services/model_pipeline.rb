@@ -2,7 +2,7 @@ class ModelPipeline
   def self.call(file)
     CurrentValidation.validation_run = ValidationRun.generate
 
-    input_records = ModelReader.new(file).each do |line|
+    input_records = ModelReader.new(file.to_io).each do |line|
       LineCleaner.new(line).call
       .then { |cleaned_line| NamelistExtractor.call(cleaned_line) }
       .then { |namelist_tuple| NamelistFactory.call(namelist_tuple) }
