@@ -8,6 +8,23 @@ class SliceFileStatus
     @validation_run = validation_run
   end
 
+
+  def temperature_slices
+    scope.where(quantity: "TEMPERATURE")
+  end
+
+  def visibility_slices
+    scope.where(quantity: "VISIBILITY")
+  end
+
+  def velocity_slices
+    scope.where(quantity: "VELOCITY")
+  end
+
+  def scope
+    validation_run.slice_files
+  end
+
   private
 
   attr_reader :validation_run
@@ -30,21 +47,5 @@ class SliceFileStatus
     unless velocity_slices.where(vector: false).size == 0
       errors.add(:base, "All 'Velocity' slice files must have 'VECTOR' set to true")
     end
-  end
-
-  def temperature_slices
-    scope.where(quantity: "TEMPERATURE")
-  end
-
-  def visibility_slices
-    scope.where(quantity: "VISIBILITY")
-  end
-
-  def velocity_slices
-    scope.where(quantity: "VELOCITY")
-  end
-
-  def scope
-    validation_run.slice_files
   end
 end

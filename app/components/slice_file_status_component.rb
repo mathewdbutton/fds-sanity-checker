@@ -2,13 +2,12 @@
 
 class SliceFileStatusComponent < ViewComponent::Base
   attr_reader :validation_run, :validator
+
+  delegate *%i[temperature_slices visibility_slices velocity_slices scope valid?], to: :validator
+
   def initialize(validation_run:)
     @validation_run = validation_run
     @validator = SliceFileStatus.new(validation_run)
-  end
-
-  def valid?
-    validator.valid?
   end
 
   def errors
@@ -24,18 +23,6 @@ class SliceFileStatusComponent < ViewComponent::Base
     scope.size
   end
 
-  def temperature_slices
-    scope.where(quantity: "TEMPERATURE")
-  end
-
-  def visibility_slices
-    scope.where(quantity: "VISIBILITY")
-  end
-
-  def velocity_slices
-    scope.where(quantity: "VELOCITY")
-  end
-
   def z_plane_count
     scope.where.not(pbz: nil).size
   end
@@ -46,12 +33,6 @@ class SliceFileStatusComponent < ViewComponent::Base
 
   def y_plane_count
     scope.where.not(pby: nil).size
-  end
-
-  private
-
-  def scope
-    validation_run.slice_files
   end
 
 end
