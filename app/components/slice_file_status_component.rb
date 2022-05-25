@@ -4,7 +4,7 @@ class SliceFileStatusComponent < ViewComponent::Base
   attr_reader :validation_run, :validator
   def initialize(validation_run:)
     @validation_run = validation_run
-    @validator = SliceFileValidator.new(validation_run)
+    @validator = SliceFileStatus.new(validation_run)
   end
 
   def valid?

@@ -7,7 +7,7 @@ class SupplyExhaustStatusComponent < ViewComponent::Base
 
   def initialize(validation_run:)
     @validation_run = validation_run
-    @supply_exhaust_validator = SupplyExhaustValidator.new(validation_run)
+    @supply_exhaust_validator = SupplyExhaustStatus.new(validation_run)
   end
 
   def units

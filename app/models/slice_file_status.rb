@@ -1,4 +1,4 @@
-class SliceFileValidator
+class SliceFileStatus
   include ActiveModel::Validations
 
   validate :required_quantities_in_z_plane
