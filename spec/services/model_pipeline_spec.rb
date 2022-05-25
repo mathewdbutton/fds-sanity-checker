@@ -13,7 +13,9 @@ RSpec.describe ModelPipeline do
         an_object_having_attributes(surface_id: "OPEN", class: Vent),
         an_object_having_attributes(surface_id: "SUCK", class: Vent),
         an_object_having_attributes(pbx: 0.20, quantity: "VELOCITY", vector: true, class: SliceFile),
-        an_object_having_attributes(pby: 0.55, quantity: "VELOCITY", vector: true, class: SliceFile)
+        an_object_having_attributes(pby: 0.55, quantity: "VELOCITY", vector: true, class: SliceFile),
+        an_object_having_attributes(char_id: "f150", orientation: "-1,0,0", quantity: "RADIATIVE HEAT FLUX", class: Device),
+        an_object_having_attributes(char_id: "vflow", quantity: "V-VELOCITY", class: Device)
       )
     end
 

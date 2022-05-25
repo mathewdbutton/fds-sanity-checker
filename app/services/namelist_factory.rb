@@ -2,7 +2,8 @@ class NamelistFactory
   MODEL_MAPPING = {
     "SURF" => SurfaceAttributeMapper,
     "VENT" => VentAttributeMapper,
-    "SLCF" => SliceFileAttributeMapper
+    "SLCF" => SliceFileAttributeMapper,
+    "DEVC" => DeviceAttributeMapper,
   }
 
   def self.call(namelist_tuple)

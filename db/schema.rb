@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_22_024315) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_25_113259) do
+  create_table "devices", force: :cascade do |t|
+    t.string "orientation"
+    t.string "quantity"
+    t.string "char_id"
+    t.integer "validation_run_id", null: false
+    t.index ["validation_run_id"], name: "index_devices_on_validation_run_id"
+  end
+
   create_table "slice_files", force: :cascade do |t|
     t.integer "validation_run_id", null: false
     t.string "quantity"
@@ -49,6 +57,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_22_024315) do
     t.index ["validation_run_id"], name: "index_vents_on_validation_run_id"
   end
 
+  add_foreign_key "devices", "validation_runs"
   add_foreign_key "slice_files", "validation_runs"
   add_foreign_key "unmapped_name_lists", "validation_runs"
 end

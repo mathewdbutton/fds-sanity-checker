@@ -3,7 +3,7 @@
 class SupplyExhaustStatusComponent < ViewComponent::Base
   attr_reader :validation_run, :supply_exhaust_validator
 
-  delegate :total_supply, :total_demand, :net_volume_flow, to: :supply_exhaust_validator
+  delegate *%i[total_supply total_demand net_volume_flow valid?], to: :supply_exhaust_validator
 
   def initialize(validation_run:)
     @validation_run = validation_run
@@ -12,10 +12,6 @@ class SupplyExhaustStatusComponent < ViewComponent::Base
 
   def units
     "m<sup>3</sup>/s".html_safe
-  end
-
-  def valid?
-    supply_exhaust_validator.valid?
   end
 
   def errors
