@@ -19,20 +19,4 @@ class SliceFileStatusComponent < ViewComponent::Base
     valid? ? "text-white bg-green-500" : "text-black bg-red-500"
   end
 
-  def slice_file_count
-    scope.size
-  end
-
-  def z_plane_count
-    scope.where.not(pbz: nil).size
-  end
-
-  def x_plane_count
-    scope.where.not(pbx: nil).size
-  end
-
-  def y_plane_count
-    scope.where.not(pby: nil).size
-  end
-
 end

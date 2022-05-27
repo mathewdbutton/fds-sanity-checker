@@ -19,6 +19,14 @@ class SupplyExhaustStatus
     @net_volume_flow ||= total_demand + total_supply
   end
 
+  def units
+    "m<sup>3</sup>/s".html_safe
+  end
+
+  def volume_flow_contributors
+    validation_run.surfaces.where.not(volume_flow: nil)
+  end
+
   private
 
   attr_reader :validation_run
