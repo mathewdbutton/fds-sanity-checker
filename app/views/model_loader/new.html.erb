@@ -2,7 +2,7 @@
   <div class="w-1/2">
   <%= form_with url: model_loader_index_path do |form| %>
     <div class="relative mr-8">
-    <%= form.file_field :model, class:" text-center py-20 w-full bg-gray-100", required: true %>
+    <%= form.file_field :model, class:" text-center py-20 w-full bg-white", required: true %>
     <p>Drop an FDS model in the box 👆</p>
     </div>
     <%= form.submit "Run Validation", class:"btn-primary" %>
@@ -10,11 +10,13 @@
   </div>
   <div class="w-1/2">
   <h1 class="text-3xl font-medium">What is this?</h1>
+  <div>
   <hr>
   <p class="pb-4"> FDS Sanity Checker is an opinionated validation tool for your <a class="link-primary href="https://pages.nist.gov/fds-smv/" targe="_blank">FDS</a> models.
   <p class="pb-4"> It's easy to make mistakes when building FDS models, this tool attempts to sanity check them to make sure they at least produce useful results </p>
 
   <p> Try it out with this <a class="link-primary" href="https://raw.githubusercontent.com/firemodels/fds/master/Verification/Fires/couch.fds" download="couch.fds" >couch model example</a> from github.</p>
+  </div>
   </div>
 
 </div>
