@@ -1,17 +1,19 @@
 
 <div class="p-4 <%= box_state %>">
-<h2 class="font-lg bg-black text-white"><%= title %></h2>
+  <h2 class="font-lg bg-black text-white px-2">
+    <%= title %>
+  </h2>
   <div>
     <% if errors %>
       <ul>
       <% errors.each do |error| %>
-        <li class="bg-white text-red-500"><%= error %></li>
+        <li class="bg-white text-red-500 px-2"><%= error %></li>
       <% end %>
       </ul>
     <% end %>
     <%= info %>
     <details>
-    <summary> Contributing Input Parameters </summary>
+      <summary> Contributing Input Parameters </summary>
       <ul>
         <%= contributing_params %>
       </ul>

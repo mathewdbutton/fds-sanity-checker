@@ -2,7 +2,7 @@
   <div>
     <%= link_to "Load another model", root_path, class: "link-primary" %>
   </div>
-  <div class="grid grid-cols-2 gap-2">
+  <div class="grid md:grid-cols-2 grid-cols-1 gap-2">
     <%= render(SupplyExhaustStatusComponent.new(validation_run: @validation_run)) %>
     <%= render(SliceFileStatusComponent.new(validation_run: @validation_run)) %>
     <%= render(HeatFluxDeviceOrientationStatusComponent.new(validation_run: @validation_run)) %>
