@@ -1,18 +1,11 @@
-
-<div class="p-4 <%= box_state %>">
-<h2 class="font-lg bg-black text-white">Slice File Status </h2>
-  <div>
-    <% if errors %>
-      <ul>
-      <% errors.each do |error| %>
-        <li class="bg-white text-red-500"><%= error %></li>
+    <%= render(StatusComponent.new(validation_run: @validation_run, status_model: SliceFileStatus.new(@validation_run))) do |c| %>
+      <% c.with_title do %>
+        Slice File Status
       <% end %>
-      </ul>
-    <% end %>
-    Total Slice Files: <%= scope.size %> (x: <%= validator.x_plane_count %>, y: <%= validator.y_plane_count %> z: <%= validator.z_plane_count %>)
-    <details>
-    <summary> Contributing Input Parameters </summary>
-      <ul>
+      <% c.with_info do %>
+        Total Slice Files: <%= scope.size %> (x: <%= x_plane_count %>, y: <%= y_plane_count %> z: <%= z_plane_count %>)
+      <% end %>
+      <% c.contributing_params do %>
         <strong> Velocity Slices</strong>
         <% velocity_slices.find_each do | slice | %>
           <li><%= slice.used_plane %> - <%= slice.used_plane_value%> - <%= slice.vector%></li>
@@ -27,7 +20,5 @@
         <% visibility_slices.find_each do | slice | %>
           <li><%= slice.used_plane %> - <%= slice.used_plane_value%></li>
         <% end %>
-      </ul>
-    </details>
-  </div>
-</div>
+      <% end %>
+    <% end %>

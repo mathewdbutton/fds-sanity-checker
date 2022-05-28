@@ -1,20 +1,22 @@
 # frozen_string_literal: true
 
 class SupplyExhaustStatusComponent < ViewComponent::Base
-  attr_reader :validation_run, :supply_exhaust_validator
+  attr_reader :validation_run, :status_model
 
-  delegate *%i[total_supply total_demand net_volume_flow valid? units], to: :supply_exhaust_validator
+  delegate *%i[total_supply total_demand net_volume_flow valid?], to: :status_model
 
   def initialize(validation_run:)
     @validation_run = validation_run
-    @supply_exhaust_validator = SupplyExhaustStatus.new(validation_run)
+    @status_model = SupplyExhaustStatus.new(validation_run)
   end
 
-
+  def units
+    "m<sup>3</sup>/s".html_safe
+  end
 
   def errors
-    supply_exhaust_validator.valid?
-    supply_exhaust_validator.errors.full_messages
+    status_model.valid?
+    status_model.errors.full_messages
   end
 
   def box_state

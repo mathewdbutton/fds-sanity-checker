@@ -1,21 +1,13 @@
-
-<div class="p-4 <%= box_state %>">
-<h2 class="font-lg bg-black text-white">Device Orientation Status - Radiative Heat Flux</h2>
-  <div>
-    <% if errors %>
-      <ul>
-      <% errors.each do |error| %>
-        <li class="bg-white text-red-500"><%= error %></li>
+    <%= render(StatusComponent.new(validation_run: @validation_run, status_model: HeatFluxDeviceOrientationStatus.new(@validation_run))) do |c| %>
+      <% c.with_title do %>
+        Device Orientation Status - Radiative Heat Flux
       <% end %>
-      </ul>
-    <% end %>
-    <details>
-    <summary> Contributing Input Parameters </summary>
-      <ul>
+      <% c.with_info do %>
+        <%= scope.size %> "Radiative Heat Flux" <%= "device".pluralize(scope.size) %> found
+      <% end %>
+      <% c.contributing_params do %>
         <% scope.find_each do |device| %>
-        <li> <%= device.char_id || "" %> - <%= device.orientation%>
+          <li> <%= device.char_id || "ID-MISSING" %> - <%= device.orientation%>
         <% end %>
-      </ul>
-    </details>
-  </div>
-</div>
+      <% end %>
+    <% end %>

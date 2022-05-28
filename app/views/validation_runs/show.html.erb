@@ -3,59 +3,8 @@
     <%= link_to "Load another model", root_path, class: "text-cyan-500 underline" %>
   </div>
   <div class="flex space-x-2">
-    <%= render(StatusComponent.new(validation_run: @validation_run, status_model: SupplyExhaustStatus.new(@validation_run))) do |c| %>
-      <% c.with_title do %>
-        Suppy & Exhaust Status
-      <% end %>
-      <% c.with_info do %>
-        <p>Total Supply: <%= c.status_model.total_supply %><%=c.status_model.units%></p>
-        <p>Total Exhaust: <%= c.status_model.total_demand %><%=c.status_model.units%></p>
-        <p>Net Volume Flow: <%= c.status_model.net_volume_flow %><%=c.status_model.units%> </p>
-      <% end %>
-      <% c.contributing_params do %>
-        <% c.status_model.volume_flow_contributors.find_each do | surface | %>
-          <li>Surface - <%= surface.char_id %> - <%= surface.vents.size %> - <%= surface.volume_flow %><%=c.status_model.units%></li>
-        <% end %>
-      <% end %>
-    <% end %>
-
-    <%= render(StatusComponent.new(validation_run: @validation_run, status_model: SliceFileStatus.new(@validation_run))) do |c| %>
-      <% c.with_title do %>
-        Slice File Status
-      <% end %>
-      <% c.with_info do %>
-        Total Slice Files: <%= c.scope.size %> (x: <%= c.status_model.x_plane_count %>, y: <%= c.status_model.y_plane_count %> z: <%= c.status_model.z_plane_count %>)
-      <% end %>
-      <% c.contributing_params do %>
-        <strong> Velocity Slices</strong>
-        <% c.status_model.velocity_slices.find_each do | slice | %>
-          <li><%= slice.used_plane %> - <%= slice.used_plane_value%> - <%= slice.vector%></li>
-        <% end %>
-        <hr>
-        <strong> Temperature Slices</strong>
-        <% c.status_model.temperature_slices.find_each do | slice | %>
-          <li><%= slice.used_plane %> - <%= slice.used_plane_value%></li>
-        <% end %>
-        <hr>
-        <strong> Visibility Slices</strong>
-        <% c.status_model.visibility_slices.find_each do | slice | %>
-          <li><%= slice.used_plane %> - <%= slice.used_plane_value%></li>
-        <% end %>
-      <% end %>
-    <% end %>
-
-    <%= render(StatusComponent.new(validation_run: @validation_run, status_model: HeatFluxDeviceOrientationStatus.new(@validation_run))) do |c| %>
-      <% c.with_title do %>
-        Device Orientation Status - Radiative Heat Flux
-      <% end %>
-      <% c.with_info do %>
-        <%= c.scope.size %> "Radiative Heat Flux" <%= "device".pluralize(c.scope.size) %> found
-      <% end %>
-      <% c.contributing_params do %>
-        <% c.scope.find_each do |device| %>
-          <li> <%= device.char_id || "ID-MISSING" %> - <%= device.orientation%>
-        <% end %>
-      <% end %>
-    <% end %>
+    <%= render(SupplyExhaustStatusComponent.new(validation_run: @validation_run)) %>
+    <%= render(SliceFileStatusComponent.new(validation_run: @validation_run)) %>
+    <%= render(HeatFluxDeviceOrientationStatusComponent.new(validation_run: @validation_run)) %>
   </div>
 </div>

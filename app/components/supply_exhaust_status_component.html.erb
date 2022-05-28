@@ -1,20 +1,15 @@
-
-<div class="p-4 <%= box_state %>">
-<h2 class="font-lg bg-black text-white">Suppy & Exhaust Status </h2>
-  <div class="">
-    <% if errors %>
-      <p class="bg-white text-red-500"><%= errors.join(" ,") %></p>
+<%= render(StatusComponent.new(validation_run: validation_run, status_model: SupplyExhaustStatus.new(validation_run))) do |c| %>
+  <% c.with_title do %>
+    Suppy & Exhaust Status
+  <% end %>
+  <% c.with_info do %>
+    <p>Total Supply: <%= total_supply %><%= units%></p>
+    <p>Total Exhaust: <%= total_demand %><%= units%></p>
+    <p>Net Volume Flow: <%= net_volume_flow %><%= units%> </p>
+  <% end %>
+  <% c.contributing_params do %>
+    <% volume_flow_contributors.find_each do | surface | %>
+      <li>Surface - <%= surface.char_id %> - <%= surface.vents.size %> - <%= surface.volume_flow %><%=units%></li>
     <% end %>
-    <p>Total Supply: <%= total_supply %><%=units%></p>
-    <p>Total Exhaust: <%= total_demand %><%=units%></p>
-    <p>Net Volume Flow: <%= net_volume_flow %><%=units%> </p>
-    <details>
-    <summary> Contributing Input Parameters </summary>
-      <ul>
-        <% volume_flow_contributors.find_each do | surface | %>
-          <li>Surface - <%= surface.char_id %> - <%= surface.vents.size %> - <%= surface.volume_flow %><%=units%></li>
-        <% end %>
-      </ul>
-    </details>
-  </div>
-</div>
+  <% end %>
+<% end %>

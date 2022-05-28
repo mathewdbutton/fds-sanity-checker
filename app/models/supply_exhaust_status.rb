@@ -19,12 +19,12 @@ class SupplyExhaustStatus
     @net_volume_flow ||= total_demand + total_supply
   end
 
-  def units
-    "m<sup>3</sup>/s".html_safe
-  end
-
   def volume_flow_contributors
     validation_run.surfaces.where.not(volume_flow: nil)
+  end
+
+  def scope
+    validation_run.vents.includes(:surface)
   end
 
   private
@@ -35,10 +35,5 @@ class SupplyExhaustStatus
     unless net_volume_flow.zero?
       errors.add(:net_volume_flow, "must be equal to 0")
     end
-  end
-
-
-  def scope
-    validation_run.vents.includes(:surface)
   end
 end
