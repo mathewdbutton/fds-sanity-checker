@@ -1,8 +1,8 @@
-<div class="flex flex-col space-y-2">
+<div class="flex flex-col">
   <div>
     <%= link_to "Load another model", root_path, class: "text-cyan-500 underline" %>
   </div>
-  <div class="flex space-x-2">
+  <div class="grid grid-cols-2 gap-2">
     <%= render(SupplyExhaustStatusComponent.new(validation_run: @validation_run)) %>
     <%= render(SliceFileStatusComponent.new(validation_run: @validation_run)) %>
     <%= render(HeatFluxDeviceOrientationStatusComponent.new(validation_run: @validation_run)) %>
