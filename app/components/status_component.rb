@@ -19,8 +19,16 @@ class StatusComponent < ViewComponent::Base
     status_model.errors.full_messages
   end
 
+  def title_suffix
+    valid? ? "Pass" : "Fail"
+  end
+
   def box_state
-    valid? ? "text-white bg-green-500" : "text-black bg-red-500"
+    valid? ? "bg-success" : "bg-failure"
+  end
+
+  def order
+    valid? ? "order-pass" : "order-fail"
   end
 
 end
