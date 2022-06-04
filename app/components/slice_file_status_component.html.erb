@@ -1,24 +1,24 @@
     <%= render(StatusComponent.new(validation_run: @validation_run, status_model: SliceFileStatus.new(@validation_run))) do |c| %>
-      <% c.with_title do %>
-        Slice File Status
-      <% end %>
-      <% c.with_info do %>
-        Total Slice Files: <%= scope.size %> (x: <%= x_plane_count %>, y: <%= y_plane_count %> z: <%= z_plane_count %>)
-      <% end %>
-      <% c.contributing_params do %>
-        <strong> Velocity Slices</strong>
-        <% velocity_slices.find_each do | slice | %>
-          <li><%= slice.used_plane %> - <%= slice.used_plane_value%> - <%= slice.vector%></li>
-        <% end %>
-        <hr>
-        <strong> Temperature Slices</strong>
-        <% temperature_slices.find_each do | slice | %>
-          <li><%= slice.used_plane %> - <%= slice.used_plane_value%></li>
-        <% end %>
-        <hr>
-        <strong> Visibility Slices</strong>
-        <% visibility_slices.find_each do | slice | %>
-          <li><%= slice.used_plane %> - <%= slice.used_plane_value%></li>
-        <% end %>
-      <% end %>
+  <% c.with_title do %>
+    Slice File Status
+  <% end %>
+  <% c.with_info do %>
+    Total Slice Files: <%= scope.size %> (x: <%= x_plane_count %>, y: <%= y_plane_count %> z: <%= z_plane_count %>)
+  <% end %>
+  <% c.contributing_params do %>
+    <strong> Velocity Slices</strong>
+    <% velocity_slices.find_each do | slice | %>
+      <li><%= slice.used_plane %> - <%= slice.used_plane_value%> - <%= slice.vector%></li>
     <% end %>
+    <hr>
+    <strong> Temperature Slices</strong>
+    <% temperature_slices.find_each do | slice | %>
+      <li><%= slice.used_plane %> - <%= slice.used_plane_value%></li>
+    <% end %>
+    <hr>
+    <strong> Visibility Slices</strong>
+    <% visibility_slices.find_each do | slice | %>
+      <li><%= slice.used_plane %> - <%= slice.used_plane_value%></li>
+    <% end %>
+  <% end %>
+<% end %>

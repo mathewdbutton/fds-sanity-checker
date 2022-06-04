@@ -1,13 +1,13 @@
-    <%= render(StatusComponent.new(validation_run: @validation_run, status_model: HeatFluxDeviceOrientationStatus.new(@validation_run))) do |c| %>
-      <% c.with_title do %>
-        Device Orientation Status - Radiative Heat Flux
-      <% end %>
-      <% c.with_info do %>
-        <%= scope.size %> "Radiative Heat Flux" <%= "device".pluralize(scope.size) %> found
-      <% end %>
-      <% c.contributing_params do %>
-        <% scope.find_each do |device| %>
-          <li> <%= device.char_id || "ID-MISSING" %> - <%= device.orientation%>
-        <% end %>
+<%= render(StatusComponent.new(validation_run: @validation_run, status_model: HeatFluxDeviceOrientationStatus.new(@validation_run))) do |c| %>
+  <% c.with_title do %>
+    Device Orientation Status - Radiative Heat Flux
+  <% end %>
+  <% c.with_info do %>
+    <%= scope.size %> "Radiative Heat Flux" <%= "device".pluralize(scope.size) %> found
+  <% end %>
+  <% c.contributing_params do %>
+    <% scope.find_each do |device| %>
+      <li> <%= device.char_id || "ID-MISSING" %> - <%= device.orientation%>
       <% end %>
     <% end %>
+  <% end %>

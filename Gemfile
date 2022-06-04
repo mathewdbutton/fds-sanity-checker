@@ -74,8 +74,8 @@ group :development do
   # gem "spring"
 
   gem "standardrb", "~> 1.0"
-
-
+  gem "htmlbeautifier"
+  gem 'erb_lint'
 end
 
 group :test do
