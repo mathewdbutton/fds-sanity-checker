@@ -4,12 +4,12 @@ module Mapper
     def self.extended(klass)
     end
 
-    mattr_reader :testing
+    mattr_reader :field_map_logging
 
 
-    @@testing = Hash.new {|hsh, key| hsh[key] = [] }
+    @@field_map_logging = Hash.new {|hsh, key| hsh[key] = [] }
     def add_mapped_field(value)
-      @@testing[self.to_s] << value
+      @@field_map_logging[self.to_s] << value
     end
 
     def map_attribute(argument_name, regex)
