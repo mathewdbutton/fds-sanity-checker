@@ -76,6 +76,7 @@ group :development do
   gem "standardrb", "~> 1.0"
   gem "htmlbeautifier"
   gem 'erb_lint'
+  gem "lefthook"
 end
 
 group :test do

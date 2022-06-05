@@ -1,0 +1,4 @@
+pre-push:
+  commands:
+    update_docs:
+      run: rails generate_mappings:fields &> /dev/null && (git diff --exit-code --quiet FIELD_MAPPINGS.md || (echo "The field mappings have changed" && exit 1))

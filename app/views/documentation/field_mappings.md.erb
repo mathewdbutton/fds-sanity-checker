@@ -1,0 +1,8 @@
+# Field Mappings
+The following are the fields currently being mapped and used for validation.
+
+<% namelists.each do |namelist, fields| %>
+  ## <%= namelist.gsub("Mapper::","").gsub("Attribute","") %>
+  <% fields.each do |field| %>
+   - <%= field.to_s.downcase %><% end %>
+<% end %>
