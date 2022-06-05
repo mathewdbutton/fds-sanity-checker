@@ -15,7 +15,8 @@ RSpec.describe ModelPipeline do
         an_object_having_attributes(pbx: 0.20, quantity: "VELOCITY", vector: true, class: SliceFile),
         an_object_having_attributes(pby: 0.55, quantity: "VELOCITY", vector: true, class: SliceFile),
         an_object_having_attributes(char_id: "f150", orientation: "-1,0,0", quantity: "RADIATIVE HEAT FLUX", class: Device),
-        an_object_having_attributes(char_id: "vflow", quantity: "V-VELOCITY", class: Device)
+        an_object_having_attributes(char_id: "vflow", quantity: "V-VELOCITY", class: Device),
+        an_object_having_attributes(gvec_x:0.0, gvec_y:0.0, gvec_z:-9.81, class: Misc)
       )
     end
 

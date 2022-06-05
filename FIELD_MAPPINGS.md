@@ -8,6 +8,10 @@ The following are the fields currently being mapped and used for validation.
    - orientation
    - id
 
+  ## Misc
+  
+   - gvec
+
   ## SliceFile
   
    - pbx

@@ -3,6 +3,7 @@ class RegexLibrary
   WORD = /'(?<value>.*?)'/
   LOGICAL = /.(?<value>TRUE|FALSE)./
   REAL_TRIPLET = /(?<value>.*?,.*?,.*?),/
+  REAL_ARRAY = /(?<value>-?\d+?\.\d*,-?\d+?\.\d*,-?\d+?\.\d*)/
 
   def self.cast_logical(string)
     case string

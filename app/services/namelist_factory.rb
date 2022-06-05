@@ -4,6 +4,7 @@ class NamelistFactory
     "VENT" => Mapper::VentAttribute,
     "SLCF" => Mapper::SliceFileAttribute,
     "DEVC" => Mapper::DeviceAttribute,
+    "MISC" => Mapper::MiscAttribute,
   }
 
   def self.call(namelist_tuple)

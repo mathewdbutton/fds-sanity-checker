@@ -42,4 +42,12 @@ RSpec.describe RegexLibrary do
       expect(boolean).to be(true)
     end
   end
+
+  describe "REAL_ARRAY" do
+    it "picks up all values numbers" do
+      matched_value = "GVEC=1.4,0.,-9.81".match(described_class::REAL_ARRAY)[:value]
+
+      expect(matched_value).to eql("1.4,0.,-9.81")
+    end
+  end
 end
