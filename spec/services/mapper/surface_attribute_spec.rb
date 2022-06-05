@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe SurfaceAttributeMapper do
+RSpec.describe Mapper::SurfaceAttribute do
   describe "#call" do
     it "assigns the fields correctly" do
       validation_run = create(:validation_run)

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe DeviceAttributeMapper do
+RSpec.describe Mapper::DeviceAttribute do
   describe "#call" do
     it "assigns the fields correctly" do
       validation_run = create(:validation_run)

@@ -9,7 +9,7 @@ RSpec.describe NamelistFactory do
 
       aggregate_failures do
         expect(mapper).to be_an(Array)
-        expect(mapper[0]).to be(SurfaceAttributeMapper)
+        expect(mapper[0]).to be(Mapper::SurfaceAttribute)
         expect(mapper[1]).to be(tuple)
       end
     end

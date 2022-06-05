@@ -1,9 +1,9 @@
 require "rails_helper"
 
-RSpec.describe InputAttributeMapper do
+RSpec.describe Mapper::InputAttribute do
   let!(:mock_class) do
     Class.new do
-      extend InputAttributeMapper
+      extend Mapper::InputAttribute
 
       map_attribute :THIS_IS_A_TEST_METHOD, /(?<value>some_value)/
       map_attribute :will_not_find_a_thing, /nope/

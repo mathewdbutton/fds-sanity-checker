@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe SliceFileAttributeMapper do
+RSpec.describe Mapper::SliceFileAttribute do
   describe "#call" do
     it "picks up the correct fields" do
       validation_run = create(:validation_run)
