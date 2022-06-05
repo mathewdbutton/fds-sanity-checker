@@ -1,24 +1,14 @@
-# README
+# FDS Sanity Checker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## What is this?
 
-Things you may want to cover:
+FDS Sanity Checker is an opinionated validation tool for your [FDS](https://pages.nist.gov/fds-smv/) models.
 
-* Ruby version
+It's easy to make mistakes when building FDS models, this tool attempts to sanity check them to make sure they at least produce useful results.
 
-* System dependencies
+Try it out with this [couch model example](https://raw.githubusercontent.com/firemodels/fds/master/Verification/Fires/couch.fds) from github.
 
-* Configuration
 
-* Database creation
+## Currently Mapped Fields
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Here are the [fields](FIELD_MAPPINGS.md) currently being used for validation.
