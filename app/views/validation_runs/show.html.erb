@@ -1,5 +1,6 @@
 <div class="flex flex-col">
-  <div>
+  <div class="pb-4">
+    <%= render(ValidationTitleComponent.new(validation_run: @validation_run)) %>
     <%= link_to "Load another model", root_path, class: "link-primary" %>
   </div>
   <div class="grid md:grid-cols-2 grid-cols-1 gap-2">
