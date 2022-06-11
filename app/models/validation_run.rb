@@ -4,6 +4,7 @@ class ValidationRun < ApplicationRecord
   has_many :unmapped_name_lists
   has_many :slice_files
   has_many :devices
+  has_one :head
 
   def self.generate(run_id: SecureRandom.uuid)
     create(run_id: run_id)

@@ -5,6 +5,7 @@ class NamelistFactory
     "SLCF" => Mapper::SliceFileAttribute,
     "DEVC" => Mapper::DeviceAttribute,
     "MISC" => Mapper::MiscAttribute,
+    "HEAD" => Mapper::HeadAttribute
   }
 
   def self.call(namelist_tuple)

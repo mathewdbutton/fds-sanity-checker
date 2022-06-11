@@ -8,6 +8,11 @@ The following are the fields currently being mapped and used for validation.
    - orientation
    - id
 
+  ## Head
+  
+   - chid
+   - title
+
   ## Misc
   
    - gvec
