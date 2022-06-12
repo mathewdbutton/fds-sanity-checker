@@ -1,4 +1,4 @@
-    <%= render(StatusComponent.new(validation_run: @validation_run, status_model: SliceFileStatus.new(@validation_run))) do |c| %>
+<%= render(StatusComponent.new(validation_run: @validation_run, status_model: SliceFileStatus.new(@validation_run))) do |c| %>
   <% c.with_title do %>
     Slice File Status
   <% end %>
