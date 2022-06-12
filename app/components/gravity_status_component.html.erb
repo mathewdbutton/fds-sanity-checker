@@ -1,0 +1,9 @@
+<%= render(StatusComponent.new(validation_run: @validation_run, status_model: GravityStatus.new(@validation_run))) do |c| %>
+  <% c.with_title do %>
+    Gravity Status
+  <% end %>
+  <% c.with_info do %>
+    <p> Gravity is set as <%= defined_gravity %><%= units %> <sup class="cursor-help text-yellow-500" title="<%= tooltip %>">?</sup></p>
+    <p> Model is <%= slope_direction %> </p>
+  <% end %>
+<% end %>
