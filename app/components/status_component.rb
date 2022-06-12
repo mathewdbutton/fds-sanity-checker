@@ -30,5 +30,4 @@ class StatusComponent < ViewComponent::Base
   def order
     valid? ? "order-pass" : "order-fail"
   end
-
 end

@@ -16,11 +16,13 @@
       </ul>
     <% end %>
     <%= info %>
+    <% if contributing_params? %>
     <details>
       <summary> Contributing Input Parameters </summary>
       <ul>
         <%= contributing_params %>
       </ul>
     </details>
+    <% end %>
   </div>
 </div>
