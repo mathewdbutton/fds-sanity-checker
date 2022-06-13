@@ -8,24 +8,25 @@
 
     <svg width="500" height="500">
     <g transform="translate(250,250)">
+
     <!-- START X AXIS-->
-      <text id="z-axis-label" x="<%= origin + axis_length %>" y="<%= origin - text_offset %>" fill="red" font-size="0">
+      <text id="z-axis-label" x="<%= axis_length %>" y="<%= -text_offset %>" fill="red" font-size="0">
         <tspan>x
           <animate attributeType="CSS" attributeName="font-size" from="0" to="15" dur="0.1s" begin="x\-pos\-arrow\-anim.end" fill="freeze" />
         </tspan>
       </text>
       <polygon fill="red">
         <animate attributeName="points" dur="0.1s" fill="freeze"
-                from="<%= origin + axis_length - arrow_size/2 %>,<%= origin %> <%= origin + axis_length %>,<%= origin %> <%= origin + axis_length - arrow_size/2 %>,<%= origin %>"
+                from="<%= -(arrow_size/2) %>,0 <%= axis_length %>,0 <%= axis_length - (arrow_size/2) %>,0"
                 begin="x\-neg.end"
-                to="<%= origin + axis_length - arrow_size/2 %>,<%= origin - arrow_size/2 %> <%= origin + axis_length %>,<%= origin %> <%= origin + axis_length - arrow_size/2 %>,<%= origin + arrow_size/2 %>"
+                to="<%= axis_length - (arrow_size/2) %>,<%= -(arrow_size/2) %> <%= axis_length %>,0 <%= axis_length - (arrow_size/2) %>,<%= (arrow_size/2) %>"
                 id="x-pos-arrow-anim" />
       </polygon>
-      <line y1="<%= origin %>" y2="<%= origin %>" stroke="red">
+      <line y1="0" y2="0" stroke="red">
         <animate
                 attributeName="x1"
-                from="<%= origin %>"
-                to="<%= origin - axis_length %>"
+                from="0"
+                to="<%= -axis_length %>"
                 dur="1s"
                 fill="freeze"
                 begin="1s"
@@ -33,8 +34,8 @@
                 id="x-neg" />
         <animate
                 attributeName="x2"
-                from="<%= origin %>"
-                to="<%= origin + axis_length %>"
+                from="0"
+                to="<%= axis_length %>"
                 dur="1s"
                 begin="1s"
                 fill="freeze"
@@ -42,41 +43,66 @@
                 id="x-pos" />
       </line>
       <!-- END X AXIS-->
+      <!-- LEGEND STARTS -->
+        <text id="z-axis-label" x="<%= axis_length %>" y="<%= -axis_length %>" font-size="0">
+        <tspan fill="black">Legend
+          <animate attributeType="CSS" attributeName="font-size" from="0" to="15" dur="0.1s" begin="z\-neg\-arrow\-anim.end" fill="freeze" />
+        </tspan>
+      </text>
+            <text id="z-axis-label" x="<%= axis_length %>" y="<%= -axis_length+15 %>" font-size="0">
+              <tspan fill="green">Model Slope
+          <animate attributeType="CSS" attributeName="font-size" from="0" to="10" dur="0.1s" begin="z\-neg\-arrow\-anim.end" fill="freeze" />
+        </tspan>
+        </text>
+        <text id="z-axis-label" x="<%= axis_length %>" y="<%= -axis_length+25 %>" font-size="0">
+        <tspan fill="blue">Gravity
+          <animate attributeType="CSS" attributeName="font-size" from="0" to="10" dur="0.1s" begin="z\-neg\-arrow\-anim.end" fill="freeze" />
+        </tspan>
+        </text>
+      <!-- LEGEND ENDS -->
 
-      <%= gravity_line %>
-      <%= model_slope_line %>
+        <g transform="scale(1 -1)">
+          <%= gravity_line %>
+          <g transform="rotate(90)">
+            <%= gravity_line("green") %>
+          </g>
+          <g transform="rotate(-90)">
+            <%= gravity_line("green") %>
+          </g>
+        </g>
       <!-- START Z AXIS-->
-      <text id="z-axis-label" x="<%= origin + text_offset %>" y="<%= origin - axis_length %>" fill="red" font-size="0">
+      <text id="z-axis-label" x="<%= text_offset %>" y="<%= -axis_length %>" fill="red" font-size="0">
         <tspan>z
           <animate attributeType="CSS" attributeName="font-size" from="0" to="15" dur="0.1s" begin="z\-neg\-arrow\-anim.end" fill="freeze" />
         </tspan>
       </text>
       <polygon fill="red">
         <animate attributeName="points" dur="0.1s" fill="freeze"
-                from="<%= origin %>,<%= origin - axis_length + arrow_size/2 %> <%= origin %>,<%= origin - axis_length + arrow_size/2 %>, <%= origin %>,<%= origin - axis_length %>"
+                from="0,<%= -axis_length + (arrow_size/2) %> 0,<%= -axis_length + (arrow_size/2) %>, 0,<%= -axis_length %>"
                 begin="z\-neg.end"
-                to="<%= origin + arrow_size/2 %>,<%= origin - axis_length + arrow_size/2 %> <%= origin - arrow_size/2 %>,<%= origin - axis_length + arrow_size/2 %> <%= origin %>,<%= origin - axis_length %>"
+                to="<%= (arrow_size/2) %>,<%= -axis_length + (arrow_size/2) %> <%= -(arrow_size/2) %>,<%= -axis_length + (arrow_size/2) %> 0,<%= -axis_length %>"
                 id="z-neg-arrow-anim" />
       </polygon>
-      <line x1="<%= origin %>" x2="<%= origin %>" stroke="red">
+      <line x1="0" x2="0" stroke="red">
         <animate
                 attributeName="y1"
-                from="<%= origin %>"
-                to="<%= origin - axis_length %>"
+                from="0"
+                to="<%= -axis_length %>"
                 dur="1s"
                 fill="freeze"
                 begin="x\-pos.begin"
                 id="z-neg" />
         <animate
                 attributeName="y2"
-                from="<%= origin %>"
-                to="<%= origin + axis_length %>"
+                from="0"
+                to="<%= axis_length %>"
                 dur="1s"
                 fill="freeze"
                 begin="x\-pos.begin"
                 id="z-pos" />
       </line>
       <!-- END Z AXIS-->
+
       </g>
     </svg>
 
