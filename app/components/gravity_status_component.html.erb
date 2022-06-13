@@ -5,5 +5,106 @@
   <% c.with_info do %>
     <p> Gravity is set as <%= defined_gravity %><%= units %> <sup class="cursor-help text-yellow-500" title="<%= tooltip %>">?</sup></p>
     <p> Model is <%= slope_direction %> </p>
+
+    <svg width="500" height="500">
+    <g transform="translate(250,250)">
+
+    <!-- START X AXIS-->
+      <text id="z-axis-label" x="<%= axis_length %>" y="<%= -text_offset %>" fill="red" font-size="0">
+        <tspan>x
+          <animate attributeType="CSS" attributeName="font-size" from="0" to="15" dur="0.1s" begin="x\-pos\-arrow\-anim.end" fill="freeze" />
+        </tspan>
+      </text>
+      <polygon fill="red">
+        <animate attributeName="points" dur="0.1s" fill="freeze"
+                from="<%= -(arrow_size/2) %>,0 <%= axis_length %>,0 <%= axis_length - (arrow_size/2) %>,0"
+                begin="x\-neg.end"
+                to="<%= axis_length - (arrow_size/2) %>,<%= -(arrow_size/2) %> <%= axis_length %>,0 <%= axis_length - (arrow_size/2) %>,<%= (arrow_size/2) %>"
+                id="x-pos-arrow-anim" />
+      </polygon>
+      <line y1="0" y2="0" stroke="red">
+        <animate
+                attributeName="x1"
+                from="0"
+                to="<%= -axis_length %>"
+                dur="1s"
+                fill="freeze"
+                begin="1s"
+                repeatCount="1"
+                id="x-neg" />
+        <animate
+                attributeName="x2"
+                from="0"
+                to="<%= axis_length %>"
+                dur="1s"
+                begin="1s"
+                fill="freeze"
+                repeatCount="1"
+                id="x-pos" />
+      </line>
+      <!-- END X AXIS-->
+      <!-- LEGEND STARTS -->
+        <text id="z-axis-label" x="<%= axis_length %>" y="<%= -axis_length %>" font-size="0">
+        <tspan fill="black">Legend
+          <animate attributeType="CSS" attributeName="font-size" from="0" to="15" dur="0.1s" begin="z\-neg\-arrow\-anim.end" fill="freeze" />
+        </tspan>
+      </text>
+            <text id="z-axis-label" x="<%= axis_length %>" y="<%= -axis_length+15 %>" font-size="0">
+              <tspan fill="green">Model Slope
+          <animate attributeType="CSS" attributeName="font-size" from="0" to="10" dur="0.1s" begin="z\-neg\-arrow\-anim.end" fill="freeze" />
+        </tspan>
+        </text>
+        <text id="z-axis-label" x="<%= axis_length %>" y="<%= -axis_length+25 %>" font-size="0">
+        <tspan fill="blue">Gravity
+          <animate attributeType="CSS" attributeName="font-size" from="0" to="10" dur="0.1s" begin="z\-neg\-arrow\-anim.end" fill="freeze" />
+        </tspan>
+        </text>
+      <!-- LEGEND ENDS -->
+
+        <g transform="scale(1 -1)">
+          <%= gravity_line %>
+          <g transform="rotate(90)">
+            <%= gravity_line("green") %>
+          </g>
+          <g transform="rotate(-90)">
+            <%= gravity_line("green") %>
+          </g>
+        </g>
+      <!-- START Z AXIS-->
+      <text id="z-axis-label" x="<%= text_offset %>" y="<%= -axis_length %>" fill="red" font-size="0">
+        <tspan>z
+          <animate attributeType="CSS" attributeName="font-size" from="0" to="15" dur="0.1s" begin="z\-neg\-arrow\-anim.end" fill="freeze" />
+        </tspan>
+      </text>
+      <polygon fill="red">
+        <animate attributeName="points" dur="0.1s" fill="freeze"
+                from="0,<%= -axis_length + (arrow_size/2) %> 0,<%= -axis_length + (arrow_size/2) %>, 0,<%= -axis_length %>"
+                begin="z\-neg.end"
+                to="<%= (arrow_size/2) %>,<%= -axis_length + (arrow_size/2) %> <%= -(arrow_size/2) %>,<%= -axis_length + (arrow_size/2) %> 0,<%= -axis_length %>"
+                id="z-neg-arrow-anim" />
+      </polygon>
+      <line x1="0" x2="0" stroke="red">
+        <animate
+                attributeName="y1"
+                from="0"
+                to="<%= -axis_length %>"
+                dur="1s"
+                fill="freeze"
+                begin="x\-pos.begin"
+                id="z-neg" />
+        <animate
+                attributeName="y2"
+                from="0"
+                to="<%= axis_length %>"
+                dur="1s"
+                fill="freeze"
+                begin="x\-pos.begin"
+                id="z-pos" />
+      </line>
+      <!-- END Z AXIS-->
+
+      </g>
+    </svg>
+
   <% end %>
 <% end %>
