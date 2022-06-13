@@ -7,23 +7,25 @@
     <p> Model is <%= slope_direction %> </p>
 
     <svg width="500" height="500">
-      <text id="z-axis-label" x="375" y="240" fill="red" font-size="0">
+    <g transform="translate(250,250)">
+    <!-- START X AXIS-->
+      <text id="z-axis-label" x="<%= origin + axis_length %>" y="<%= origin - text_offset %>" fill="red" font-size="0">
         <tspan>x
           <animate attributeType="CSS" attributeName="font-size" from="0" to="15" dur="0.1s" begin="x\-pos\-arrow\-anim.end" fill="freeze" />
         </tspan>
       </text>
-      <polygon points="370,250 375,250 370,250" fill="red">
+      <polygon fill="red">
         <animate attributeName="points" dur="0.1s" fill="freeze"
-                from="370,250 375,250 370,250"
+                from="<%= origin + axis_length - arrow_size/2 %>,<%= origin %> <%= origin + axis_length %>,<%= origin %> <%= origin + axis_length - arrow_size/2 %>,<%= origin %>"
                 begin="x\-neg.end"
-                to="370,245 375,250 370,255"
+                to="<%= origin + axis_length - arrow_size/2 %>,<%= origin - arrow_size/2 %> <%= origin + axis_length %>,<%= origin %> <%= origin + axis_length - arrow_size/2 %>,<%= origin + arrow_size/2 %>"
                 id="x-pos-arrow-anim" />
       </polygon>
-      <line x1="250" y1="250" x2="250" y2="250" stroke="red">
+      <line y1="<%= origin %>" y2="<%= origin %>" stroke="red">
         <animate
                 attributeName="x1"
-                from="250"
-                to="125"
+                from="<%= origin %>"
+                to="<%= origin - axis_length %>"
                 dur="1s"
                 fill="freeze"
                 begin="1s"
@@ -31,48 +33,51 @@
                 id="x-neg" />
         <animate
                 attributeName="x2"
-                from="250"
-                to="375"
+                from="<%= origin %>"
+                to="<%= origin + axis_length %>"
                 dur="1s"
                 begin="1s"
                 fill="freeze"
                 repeatCount="1"
                 id="x-pos" />
       </line>
+      <!-- END X AXIS-->
 
       <%= gravity_line %>
       <%= model_slope_line %>
-
-      <text id="z-axis-label" x="260" y="125" fill="red" font-size="0">
+      <!-- START Z AXIS-->
+      <text id="z-axis-label" x="<%= origin + text_offset %>" y="<%= origin - axis_length %>" fill="red" font-size="0">
         <tspan>z
           <animate attributeType="CSS" attributeName="font-size" from="0" to="15" dur="0.1s" begin="z\-neg\-arrow\-anim.end" fill="freeze" />
         </tspan>
       </text>
-      <polygon points="250,135 250,135 250,125" fill="red">
+      <polygon fill="red">
         <animate attributeName="points" dur="0.1s" fill="freeze"
-                from="250,130 250,130, 250,125"
+                from="<%= origin %>,<%= origin - axis_length + arrow_size/2 %> <%= origin %>,<%= origin - axis_length + arrow_size/2 %>, <%= origin %>,<%= origin - axis_length %>"
                 begin="z\-neg.end"
-                to="255,130 245,130 250,125"
+                to="<%= origin + arrow_size/2 %>,<%= origin - axis_length + arrow_size/2 %> <%= origin - arrow_size/2 %>,<%= origin - axis_length + arrow_size/2 %> <%= origin %>,<%= origin - axis_length %>"
                 id="z-neg-arrow-anim" />
       </polygon>
-      <line x1="250" y1="250" x2="250" y2="250" stroke="red">
+      <line x1="<%= origin %>" x2="<%= origin %>" stroke="red">
         <animate
                 attributeName="y1"
-                from="250"
-                to="125"
+                from="<%= origin %>"
+                to="<%= origin - axis_length %>"
                 dur="1s"
                 fill="freeze"
                 begin="x\-pos.begin"
                 id="z-neg" />
         <animate
                 attributeName="y2"
-                from="250"
-                to="375"
+                from="<%= origin %>"
+                to="<%= origin + axis_length %>"
                 dur="1s"
                 fill="freeze"
                 begin="x\-pos.begin"
                 id="z-pos" />
       </line>
+      <!-- END Z AXIS-->
+      </g>
     </svg>
 
   <% end %>
