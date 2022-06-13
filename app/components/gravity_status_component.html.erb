@@ -5,5 +5,75 @@
   <% c.with_info do %>
     <p> Gravity is set as <%= defined_gravity %><%= units %> <sup class="cursor-help text-yellow-500" title="<%= tooltip %>">?</sup></p>
     <p> Model is <%= slope_direction %> </p>
+
+    <svg width="500" height="500">
+      <text id="z-axis-label" x="375" y="240" fill="red" font-size="0">
+        <tspan>x
+          <animate attributeType="CSS" attributeName="font-size" from="0" to="15" dur="0.1s" begin="x\-pos\-arrow\-anim.end" fill="freeze" />
+        </tspan>
+      </text>
+      <polygon points="370,250 375,250 370,250" fill="red">
+        <animate attributeName="points" dur="0.1s" fill="freeze"
+                from="370,250 375,250 370,250"
+                begin="x\-neg.end"
+                to="370,245 375,250 370,255"
+                id="x-pos-arrow-anim" />
+      </polygon>
+      <line x1="250" y1="250" x2="250" y2="250" stroke="red">
+        <animate
+                attributeName="x1"
+                from="250"
+                to="125"
+                dur="1s"
+                fill="freeze"
+                begin="1s"
+                repeatCount="1"
+                id="x-neg" />
+        <animate
+                attributeName="x2"
+                from="250"
+                to="375"
+                dur="1s"
+                begin="1s"
+                fill="freeze"
+                repeatCount="1"
+                id="x-pos" />
+      </line>
+
+      <%= gravity_line %>
+      <%= model_slope_line %>
+
+      <text id="z-axis-label" x="260" y="125" fill="red" font-size="0">
+        <tspan>z
+          <animate attributeType="CSS" attributeName="font-size" from="0" to="15" dur="0.1s" begin="z\-neg\-arrow\-anim.end" fill="freeze" />
+        </tspan>
+      </text>
+      <polygon points="250,135 250,135 250,125" fill="red">
+        <animate attributeName="points" dur="0.1s" fill="freeze"
+                from="250,130 250,130, 250,125"
+                begin="z\-neg.end"
+                to="255,130 245,130 250,125"
+                id="z-neg-arrow-anim" />
+      </polygon>
+      <line x1="250" y1="250" x2="250" y2="250" stroke="red">
+        <animate
+                attributeName="y1"
+                from="250"
+                to="125"
+                dur="1s"
+                fill="freeze"
+                begin="x\-pos.begin"
+                id="z-neg" />
+        <animate
+                attributeName="y2"
+                from="250"
+                to="375"
+                dur="1s"
+                fill="freeze"
+                begin="x\-pos.begin"
+                id="z-pos" />
+      </line>
+    </svg>
+
   <% end %>
 <% end %>
