@@ -3,7 +3,7 @@
 class GravityStatusComponent < ViewComponent::Base
   delegate :defined_gravity, :using_default?, to: :status_model
 
-  attr_reader :status_model, :validation_run, :text_offset, :arrow_size, :axis_length
+  attr_reader :status_model, :validation_run, :text_offset, :arrow_size, :axis_length, :multiplier
 
   def initialize(validation_run:)
     @validation_run = validation_run
@@ -14,86 +14,49 @@ class GravityStatusComponent < ViewComponent::Base
   end
 
   def slope_direction
-    if status_model.scope.gvec_x.positive?
+    if gvec_x.positive?
       "sloping upwards"
-    elsif status_model.scope.gvec_x.negative?
+    elsif gvec_x.negative?
       "sloping downwards"
     else
       "flat"
     end
   end
 
-  # def model_slope_line
-  #   multiplyer = 10
-  #   gvec_x_normalised = (status_model.scope.gvec_x * multiplyer)
-  #   gvec_z_normalised = (status_model.scope.gvec_z * multiplyer)
-  #   line = <<~MY_DOC
-  #     <line x1='0' y1='0' stroke='green' stroke-width="3px">
-  #       <animate
-  #         attributeName="x2"
-  #         from="0"
-  #         to="#{gvec_x_normalised}"
-  #         dur="1s"
-  #         fill="freeze"
-  #         begin="1s"
-  #          />
-  #       <animate
-  #         attributeName="y2"
-  #         from="0"
-  #         to="#{gvec_z_normalised}"
-  #         dur="1s"
-  #         fill="freeze"
-  #         begin="2s"
-  #          />
+  def gvec_x
+    status_model.scope.gvec_x
+  end
 
-  #          <animate
-  #         attributeName="x1"
-  #         from="0"
-  #         to="#{gvec_x_normalised}"
-  #         dur="1s"
-  #         fill="freeze"
-  #         begin="1s"
-  #          />
-  #       <animate
-  #         attributeName="y1"
-  #         from="0"
-  #         to="#{gvec_z_normalised}"
-  #         dur="1s"
-  #         fill="freeze"
-  #         begin="2s"
-  #          />
-  #     </line>
-  #   MY_DOC
+  def gvec_z
+    status_model.scope.gvec_z
+  end
 
-  #   line.html_safe
-  # end
+  def slope_angle
+    (90 + FDSMath.to_polar(gvec_x, gvec_z)[1]).round(2)
+  end
 
-  def gravity_line(colour="blue")
-    multiplyer = 10
-    gvec_x_normalised = (status_model.scope.gvec_x * multiplyer)
-    gvec_z_normalised = ((status_model.scope.gvec_z ) * multiplyer)
-    line = <<~MY_DOC
-      <line x1='0' y1='0' stroke='#{colour}' stroke-width="3px">
-        <animate
-          attributeName="x2"
-          from="0"
-          to="#{gvec_x_normalised}"
-          dur="1s"
-          fill="freeze"
-          begin="1s"
-           />
-        <animate
-          attributeName="y2"
-          from="0"
-          to="#{gvec_z_normalised}"
-          dur="1s"
-          fill="freeze"
-          begin="2s"
-           />
-      </line>
-    MY_DOC
+  def slope_percentage
+    (100 * Math.tan(FDSMath.to_radians(slope_angle))).round(2)
+  end
 
-    line.html_safe
+  def slope_details_position
+    radius, degree = FDSMath.to_polar(gvec_x, gvec_z)
+    FDSMath.to_cartesian(1, -90-degree)
+  end
+
+  def new_slope(change)
+    radius, degree = FDSMath.to_polar(gvec_x, gvec_z)
+    FDSMath.to_cartesian(2, degree + change)
+  end
+
+  def gvec_x_normalised
+    radius, degree = FDSMath.to_polar(gvec_x, gvec_z)
+    FDSMath.to_cartesian(2, degree)[0]
+  end
+
+  def gvec_z_normalised
+    radius, degree = FDSMath.to_polar(gvec_x, gvec_z)
+    FDSMath.to_cartesian(2, degree)[1]
   end
 
   def units
