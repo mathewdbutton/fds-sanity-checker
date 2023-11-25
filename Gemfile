@@ -58,6 +58,8 @@ group :development, :test do
   gem "factory_bot_rails", "~> 6.2"
   gem 'pry-byebug'
   gem "pry-rails", "~> 0.3.9"
+
+  gem 'dotenv-rails', "~> 2.8.1"
 end
 
 group :development do
