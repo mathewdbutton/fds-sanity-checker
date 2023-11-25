@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_11_122648) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_25_003932) do
   create_table "devices", force: :cascade do |t|
     t.string "orientation"
     t.string "quantity"
