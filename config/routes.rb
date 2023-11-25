@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get 'validation_runs/show'
   resources :model_loader, only: [:create]
+  resources :received_models, only: [:create]
+  resource :run_models, only: [:create]
   root "model_loader#new"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

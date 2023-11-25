@@ -10,7 +10,13 @@
     <%= render(GravityStatusComponent.new(validation_run: @validation_run)) %>
   </div>
   <details>
-  <summary>Model Contents</summary>
+    <summary>Model Contents</summary>
     <textarea readonly="true" class="w-full"><%= @validation_run.fds_model.download %></textarea>
   </details>
+  <%= turbo_frame_tag "test" do %>
+    <%= form_with url: run_models_path do |form| %>
+      <%= hidden_field_tag :validation_run_id, @validation_run.run_id %>
+      <%= submit_tag "Run model" %>
+    <% end %>
+  <% end %>
 </div>
