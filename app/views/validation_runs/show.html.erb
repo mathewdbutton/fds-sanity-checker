@@ -9,4 +9,8 @@
     <%= render(HeatFluxDeviceOrientationStatusComponent.new(validation_run: @validation_run)) %>
     <%= render(GravityStatusComponent.new(validation_run: @validation_run)) %>
   </div>
+  <details>
+  <summary>Model Contents</summary>
+    <textarea readonly="true" class="w-full"><%= @validation_run.fds_model.download %></textarea>
+  </details>
 </div>
