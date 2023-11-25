@@ -13,4 +13,6 @@ Style/StringLiterals:
   Enabled: false
 
 Style/Documentation:
-  Exclude: "db/migrate/*"
+  Exclude:
+    - "db/migrate/*"
+    - "app/controllers/*"
